@@ -73,6 +73,32 @@ body{font-family:'Manrope',sans-serif;font-weight:600;background:var(--bg);color
 .chat-other{background:var(--sf-high);color:#fff;border-bottom-left-radius:4px}
 .hover-lift:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
 .hover-lift:active{transform:translateY(0);box-shadow:none}
+/* === Auto Slider === */
+.slider{position:relative;width:100%;height:140px;border-radius:12px;overflow:hidden;background:var(--sf-low);border:1px solid var(--bd)}
+.slider .track{display:flex;width:100%;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.slider .slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden;cursor:pointer}
+.slider .slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35}
+.slider .slide-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.2),rgba(13,13,13,.85))}
+.slider .slide-body{position:relative;z-index:1;height:100%;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+.slider .slide-tag{display:inline-flex;align-items:center;gap:4px;align-self:flex-start;font-family:'Plus Jakarta Sans';font-weight:900;font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:4px 8px;border-radius:4px;background:rgba(200,255,0,.15);color:var(--lime);border:1px solid rgba(200,255,0,.3)}
+.slider .slide-tag.t-news{background:rgba(96,165,250,.15);color:var(--blue);border-color:rgba(96,165,250,.3)}
+.slider .slide-tag.t-grant{background:rgba(52,211,153,.15);color:var(--green);border-color:rgba(52,211,153,.3)}
+.slider .slide-tag.t-policy{background:rgba(251,191,36,.15);color:var(--amber);border-color:rgba(251,191,36,.3)}
+.slider .slide-title{font-family:'Space Grotesk';font-weight:900;font-size:18px;line-height:1.3;letter-spacing:-.02em;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.slider .slide-meta{font-size:11px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:6px}
+.slider .dots{position:absolute;bottom:8px;right:12px;display:flex;gap:5px;z-index:2}
+.slider .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .25s;cursor:pointer;border:none;padding:0}
+.slider .dot.on{width:18px;border-radius:3px;background:var(--lime);box-shadow:0 0 6px rgba(200,255,0,.6)}
+/* === Splash Logo Animation === */
+@keyframes logo-in{0%{opacity:0;transform:scale(.4) translateY(-10px)}60%{transform:scale(1.08) translateY(0)}80%{transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+@keyframes logo-pulse{0%,100%{box-shadow:0 0 40px rgba(200,255,0,.2),0 0 0 0 rgba(200,255,0,.4)}50%{box-shadow:0 0 60px rgba(200,255,0,.45),0 0 0 14px rgba(200,255,0,0)}}
+@keyframes logo-icon-wave{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(4deg) scale(1.05)}}
+@keyframes title-rise{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+.splash-logo{animation:logo-in .8s cubic-bezier(.34,1.56,.64,1) both,logo-pulse 2.6s ease-in-out 1s infinite}
+.splash-logo .ms{display:inline-block;animation:logo-icon-wave 3s ease-in-out 1s infinite;transform-origin:50% 60%}
+.splash-title{animation:title-rise .7s ease-out .3s both}
+.splash-subtitle{animation:title-rise .7s ease-out .5s both}
+.splash-langs{animation:title-rise .7s ease-out .7s both}
 </style>
 </head>
 <body>
@@ -87,11 +113,11 @@ body{font-family:'Manrope',sans-serif;font-weight:600;background:var(--bg);color
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.3) 0%,var(--bg) 70%);"></div>
   </div>
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;">
-    <div style="width:72px;height:72px;background:var(--lime);border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;box-shadow:0 0 40px rgba(200,255,0,.2);"><span class="ms f" style="font-size:40px;color:var(--lime-t);">eco</span></div>
-    <h1 class="f-head" style="font-size:38px;letter-spacing:-.06em;line-height:1;margin-bottom:16px;text-transform:uppercase;">HARVEST<br>LINK</h1>
-    <div style="width:40px;height:2px;background:var(--lime);margin:0 auto 10px;"></div>
-    <p style="color:var(--txt2);font-size:14px;">농업 인력 매칭 플랫폼</p>
-    <div style="width:100%;max-width:340px;margin-top:40px;display:flex;flex-direction:column;gap:10px;">
+    <div class="splash-logo" style="width:72px;height:72px;background:var(--lime);border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;box-shadow:0 0 40px rgba(200,255,0,.2);"><span class="ms f" style="font-size:40px;color:var(--lime-t);">eco</span></div>
+    <h1 class="f-head splash-title" style="font-size:38px;letter-spacing:-.06em;line-height:1;margin-bottom:16px;text-transform:uppercase;">HARVEST<br>LINK</h1>
+    <div class="splash-subtitle" style="width:40px;height:2px;background:var(--lime);margin:0 auto 10px;"></div>
+    <p class="splash-subtitle" style="color:var(--txt2);font-size:14px;">농업 인력 매칭 플랫폼</p>
+    <div class="splash-langs" style="width:100%;max-width:340px;margin-top:40px;display:flex;flex-direction:column;gap:10px;">
       <button onclick="go('s-login')" style="display:flex;align-items:center;gap:14px;width:100%;height:60px;background:var(--sf-low);border:1px solid rgba(200,255,0,.4);border-left:4px solid var(--lime);border-radius:10px;color:#fff;font-size:15px;font-weight:700;padding:0 18px;cursor:pointer;" onmousedown="this.style.transform='scale(.97)'" onmouseup="this.style.transform=''"><span style="font-size:22px;">🇰🇷</span><span style="flex:1;text-align:left;">한국어 <span style="color:var(--txt2);font-size:12px;">Korean</span></span><span class="ms" style="color:var(--txt3);font-size:18px;">chevron_right</span></button>
       <button onclick="go('s-login')" style="display:flex;align-items:center;gap:14px;width:100%;height:60px;background:var(--sf-low);border:1px solid var(--bd);border-radius:10px;color:#fff;font-size:15px;font-weight:700;padding:0 18px;cursor:pointer;"><span style="font-size:22px;">🇺🇸</span><span style="flex:1;text-align:left;">English</span><span class="ms" style="color:var(--txt3);font-size:18px;">chevron_right</span></button>
       <button onclick="go('s-login')" style="display:flex;align-items:center;gap:14px;width:100%;height:60px;background:var(--sf-low);border:1px solid var(--bd);border-radius:10px;color:#fff;font-size:15px;font-weight:700;padding:0 18px;cursor:pointer;"><span style="font-size:22px;">🇨🇳</span><span style="flex:1;text-align:left;">中文</span><span class="ms" style="color:var(--txt3);font-size:18px;">chevron_right</span></button>
@@ -144,8 +170,8 @@ body{font-family:'Manrope',sans-serif;font-weight:600;background:var(--bg);color
   </div>
 </div>
 <div style="padding:20px;display:flex;flex-direction:column;gap:24px;" class="pad-b">
-  <!-- Nature banner -->
-  <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=60" class="nature-banner" alt="farmland" style="height:120px;"/>
+  <!-- Auto Slider: 메인공고 / 농업뉴스 / 지원금 / 정부정책 -->
+  <div class="slider" id="slider-farmer" data-role="farmer"></div>
   <!-- Stats: 라임 단일 톤 통일 (강조 1, 보조 2) — Senior Mode 호환 -->
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
     <div style="height:110px;border-radius:12px;background:linear-gradient(135deg,var(--lime),#162F1E);padding:14px 12px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;"><span class="f-head" style="font-size:32px;color:var(--lime-t);line-height:1;">3</span><div><div class="f-label" style="font-size:10px;color:var(--lime-t);">진행중</div><div style="font-size:8px;color:rgba(39,53,0,.7);text-transform:uppercase;">Active</div></div><span class="ms f" style="position:absolute;right:-6px;top:-6px;font-size:54px;color:rgba(39,53,0,.15);">agriculture</span></div>
@@ -258,8 +284,8 @@ body{font-family:'Manrope',sans-serif;font-weight:600;background:var(--bg);color
   </div>
 </div>
 <div style="padding:20px;display:flex;flex-direction:column;gap:24px;" class="pad-b">
-  <!-- Nature banner -->
-  <img src="https://images.unsplash.com/photo-1595855759920-86582396756a?w=800&q=60" class="nature-banner" alt="rice field" style="height:120px;"/>
+  <!-- Auto Slider: 메인공고 / 농업뉴스 / 지원금 / 정부정책 -->
+  <div class="slider" id="slider-worker" data-role="worker"></div>
   <!-- Stats -->
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
     <div style="text-align:center;padding:14px 8px;background:var(--sf-low);border:1px solid var(--bd);border-radius:12px;"><div class="f-head" style="font-size:24px;color:var(--lime);">3</div><div style="font-size:10px;color:var(--txt3);margin-top:4px;" class="f-label">지원중</div></div>
@@ -682,6 +708,65 @@ function go(id){
   if(id==='s-job-detail')setTimeout(initJobDetailMap,100);
   if(id==='s-map')setTimeout(initLocationMap,100);
   if(id==='s-post-form')loadDraft();
+  if(id==='s-farmer-home')initSlider('slider-farmer');
+  if(id==='s-worker-home')initSlider('slider-worker');
+}
+
+// === Auto Slider (메인공고 / 농업뉴스 / 지원금 / 정부정책) ===
+const sliderData={
+  farmer:[
+    {tag:'job',label:'내 공고',title:'딸기 시설하우스 수확 — 4명 모집 중 3명 확정',meta:'D-4 · 삼랑진읍',bg:'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=60',action:()=>fNav('posts')},
+    {tag:'news',label:'농업뉴스',title:'2026 봄 작황 전망 — 경남권 평년 대비 +8%',meta:'농촌진흥청 · 2일 전',bg:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=60',action:()=>toast('농업뉴스 상세 (준비 중)')},
+    {tag:'grant',label:'지원금',title:'농업인 안전보험료 정부 80% 지원',meta:'NH 농협손해보험 · 신청 가능',bg:'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=60',action:()=>toast('보험 가입 안내 (준비 중)')},
+    {tag:'policy',label:'정부정책',title:'외국인 계절근로자 신청 — 5/30 마감',meta:'법무부 · 농가 신청',bg:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=60',action:()=>toast('정책 안내 (준비 중)')}
+  ],
+  worker:[
+    {tag:'job',label:'추천 공고',title:'딸기 시설하우스 수확 — 130,000원/일',meta:'D-4 · 김철수 농가',bg:'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=60',action:()=>go('s-job-detail')},
+    {tag:'news',label:'농업뉴스',title:'2026 봄 작황 전망 — 일감 +8% 증가 예상',meta:'농촌진흥청 · 2일 전',bg:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=60',action:()=>toast('농업뉴스 상세 (준비 중)')},
+    {tag:'grant',label:'지원금',title:'농업인 안전보험 — 본인부담 20%',meta:'NH 농협손해보험',bg:'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=60',action:()=>toast('보험 가입 안내 (준비 중)')},
+    {tag:'policy',label:'정부정책',title:'계절근로 비자(E-8) 신규 절차 안내',meta:'법무부 · 외국인 인력',bg:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=60',action:()=>toast('정책 안내 (준비 중)')}
+  ]
+};
+const sliderState={};
+function initSlider(elId){
+  const root=document.getElementById(elId);if(!root)return;
+  const role=root.dataset.role||'farmer';
+  const data=sliderData[role]||sliderData.farmer;
+  // Build markup
+  root.innerHTML=`<div class="track">${data.map((s,i)=>`<div class="slide" data-i="${i}"><img class="slide-bg" src="${s.bg}" alt="" loading="lazy" onerror="this.onerror=null;this.style.display='none'"/><div class="slide-overlay"></div><div class="slide-body"><span class="slide-tag t-${s.tag}">${s.label}</span><div class="slide-title">${s.title}</div><div class="slide-meta"><span class="ms" style="font-size:13px;color:var(--lime);">schedule</span>${s.meta}</div></div></div>`).join('')}</div><div class="dots">${data.map((_,i)=>`<button class="dot${i===0?' on':''}" data-i="${i}" aria-label="슬라이드 ${i+1}"></button>`).join('')}</div>`;
+  // Attach click handlers (slide -> action, dot -> jump)
+  const track=root.querySelector('.track');
+  root.querySelectorAll('.slide').forEach((sl,i)=>sl.addEventListener('click',()=>data[i].action&&data[i].action()));
+  root.querySelectorAll('.dot').forEach((d,i)=>d.addEventListener('click',e=>{e.stopPropagation();sliderGo(elId,i);resetSliderTimer(elId);}));
+  // Touch swipe
+  let sx=0,dx=0;
+  root.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;dx=0;},{passive:true});
+  root.addEventListener('touchmove',e=>{dx=e.touches[0].clientX-sx;},{passive:true});
+  root.addEventListener('touchend',()=>{if(Math.abs(dx)>50){const cur=sliderState[elId]?.idx||0;sliderGo(elId,cur+(dx<0?1:-1));resetSliderTimer(elId);}});
+  // Init state
+  sliderState[elId]={idx:0,len:data.length,track};
+  startSliderTimer(elId);
+}
+function sliderGo(elId,i){
+  const st=sliderState[elId];if(!st)return;
+  const idx=((i%st.len)+st.len)%st.len;
+  st.idx=idx;
+  st.track.style.transform=`translateX(-${idx*100}%)`;
+  const root=document.getElementById(elId);
+  if(!root)return;
+  root.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('on',j===idx));
+}
+function startSliderTimer(elId){
+  resetSliderTimer(elId);
+  sliderState[elId].timer=setInterval(()=>{
+    const st=sliderState[elId];if(!st)return;
+    sliderGo(elId,st.idx+1);
+  },4500);
+}
+function resetSliderTimer(elId){
+  const st=sliderState[elId];if(!st)return;
+  if(st.timer)clearInterval(st.timer);
+  st.timer=setInterval(()=>{const s=sliderState[elId];if(s)sliderGo(elId,s.idx+1);},4500);
 }
 
 // === Role-aware navigation ===
